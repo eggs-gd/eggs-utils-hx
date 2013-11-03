@@ -7,10 +7,10 @@ import haxe.rtti.Meta;
 import massive.munit.Assert;
 
 /**
- * ...
  * @author Dukobpa3
  */
 class TestChildModel2 extends AJsonModel {
+	
 	public var arrayInt:Array<Int>;
 	public var arrayBool:Array<Bool>;
 	public var arrayString:Array<String>;
@@ -67,7 +67,7 @@ class AJsonModelAdvancedTest
 		
 		model.fillData(data);
 		
-		Assert.areEqual(model.arrayInt[0] ,1);
+		Assert.areEqual(model.arrayInt[0], 1);
 		Assert.areEqual(2, model.hashInt.get("two"));
 	}
 	
@@ -79,7 +79,6 @@ class AJsonModelAdvancedTest
 		var cl = Type.resolveClass(meta.hashChild.collectionType[0]);
 		Assert.areEqual(cl, TestChildModel2);
 	}
-	
 	
 	@Test
 	public function hashTypedTest():Void 

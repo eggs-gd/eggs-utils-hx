@@ -1,4 +1,5 @@
 syntax: glob
-build/*
+build
+target/*
 report/*
 bin/*

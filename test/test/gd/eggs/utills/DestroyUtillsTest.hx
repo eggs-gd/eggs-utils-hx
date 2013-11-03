@@ -32,7 +32,7 @@ class DestroyUtillsTest {
 		Assert.areEqual(counter, 1);
 	}
 	
-	#if (flash)
+	#if (flash && !starling)
 	@Test
 	public function destroyFlashDO() {
 		var container = new Sprite();
@@ -71,4 +71,43 @@ class DestroyUtillsTest {
 	}
 	#end
 	
+	#if (cpp || neko)
+	@Test
+	public function destroySysDO() {
+		var container = new Sprite();
+		var movieClip = new MovieClip();
+		var textField = new TextField();
+		var sprite = new Sprite();
+		var shape = new Sprite();
+		var bitmap = new Bitmap(new BitmapData(100, 100));
+		var loader = new Loader();
+		
+		sprite.graphics.beginFill(0xff0000);
+		sprite.graphics.drawRect(0, 0, 100, 100);
+		sprite.graphics.endFill();
+		
+		shape.graphics.beginFill(0x00ff00);
+		shape.graphics.drawRect(0, 0, 50, 50);
+		shape.graphics.endFill();
+		
+		textField.text = "hello test";
+		
+		container.addChild(movieClip);
+		container.addChild(textField);
+		container.addChild(sprite);
+		container.addChild(shape);
+		container.addChild(bitmap);
+		container.addChild(loader);
+		
+		DestroyUtils.destroy(container);
+		
+		Assert.areEqual(container.numChildren, 0);
+		Assert.isNull(bitmap.bitmapData);
+	}
+	#end
+	
+	@Test
+	public function destroyCollection() {
+		//TODO: implement me
+	}
 }

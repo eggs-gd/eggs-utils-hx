@@ -1,13 +1,7 @@
-package gd.eggs.utils.flash;
+package gd.eggs.utils.native;
 import flash.display.Loader;
 import flash.display.Shape;
-import flash.errors.Error;
 import gd.eggs.display.DisplayObject;
-import gd.eggs.display.DisplayObject.Bitmap;
-import gd.eggs.display.DisplayObject.DisplayObjectContainer;
-import gd.eggs.display.DisplayObject.MovieClip;
-import gd.eggs.display.DisplayObject.Sprite;
-import gd.eggs.display.DisplayObject.TextField;
 import gd.eggs.utils.Validate;
 
 /**
@@ -15,14 +9,14 @@ import gd.eggs.utils.Validate;
  */
 @:noCompletion class DestroyUtils {
 	
-	#if (flash && !starling)
+	#if (cpp || neko)
 	public static function destroyDO(d:DisplayObject, safe:Bool = true):Dynamic {
 		if(Validate.isNull(d)) {
 			return null;
 		}
 		
 		if(Validate.isNotNull(d.stage)) {
-			return null;//TODO: throw
+			return null;//TODO: throw error
 		}
 		
 		if(Std.is(d, DisplayObjectContainer)) {
@@ -31,12 +25,7 @@ import gd.eggs.utils.Validate;
 				if(Validate.isNotNull(l.content)) {
 					destroyDO(l.content, safe);
 				}
-				try {
-					l.close();
-				} catch (err:Error) {
-					//no error
-				}
-				l.unloadAndStop();
+				l.unload();
 			} else {
 				if(Std.is(d, Sprite)) {
 					var s:Sprite = cast(d, Sprite);
@@ -47,7 +36,6 @@ import gd.eggs.utils.Validate;
 					if(Std.is(s, MovieClip)) {
 						cast(s, MovieClip).stop();
 					}
-					s.hitArea = null;
 				}
 				
 				var container:DisplayObjectContainer = cast(d, DisplayObjectContainer);
@@ -67,9 +55,7 @@ import gd.eggs.utils.Validate;
 				s.graphics.clear();
 			}
 		} else if(Std.is(d, TextField)) {
-			var t:TextField = cast(d, TextField);
-			t.text = "";
-			t.styleSheet = null;
+			cast(d, TextField).text = "";
 		}
 		
 		d.mask = null;
@@ -77,5 +63,4 @@ import gd.eggs.utils.Validate;
 		return null;
 	}
 	#end
-	
 }

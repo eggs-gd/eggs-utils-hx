@@ -1,7 +1,4 @@
 package gd.eggs.utils;
-import flash.display.BitmapData;
-import flash.display.Loader;
-import flash.utils.ByteArray;
 import gd.eggs.display.DisplayObject;
 
 #if msignal
@@ -38,21 +35,18 @@ class DestroyUtils{
 			}
 		}
 		
-		if(Std.is(d, ByteArray)) {
-			cast(d, ByteArray).clear();
-		}
-		
-		if(!safe && Std.is(d, BitmapData)) {
-			cast(d, BitmapData).dispose();
-		}
-		
-		#if (flash && !starling)
-		if(Std.is(d, DisplayObject)) {
+		if(Std.is(d, flash.utils.ByteArray)) {
+			cast(d, flash.utils.ByteArray).clear();
+		} else if(!safe && Std.is(d, flash.display.BitmapData)) {
+			cast(d, flash.display.BitmapData).dispose();
+		} else if(Std.is(d, DisplayObject)) {
+			#if (flash && !starling)
 			gd.eggs.utils.flash.DestroyUtils.destroyDO(cast(d, DisplayObject), safe);
+			#elseif (cpp || neko)
+			gd.eggs.utils.native.DestroyUtils.destroyDO(cast(d, DisplayObject), safe);
+			//#elseif js
+			#end
 		}
-		//#elseif (cpp && neko)
-		//#elseif js
-		#end
 		
 		return null;
 	}

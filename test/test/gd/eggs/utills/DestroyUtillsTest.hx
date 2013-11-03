@@ -99,9 +99,14 @@ class DestroyUtillsTest {
 		container.addChild(bitmap);
 		container.addChild(loader);
 		
+		container.filters = [new flash.filters.GlowFilter()];
+		
 		DestroyUtils.destroy(container);
 		
 		Assert.areEqual(container.numChildren, 0);
+		Assert.isNull(Reflect.getProperty(container, "__filters"));
+		Assert.isNull(Reflect.getProperty(sprite, "__graphicsCache"));
+		Assert.isNull(Reflect.getProperty(shape, "__graphicsCache"));
 		Assert.isNull(bitmap.bitmapData);
 	}
 	#end

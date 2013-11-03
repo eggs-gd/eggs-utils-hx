@@ -1,4 +1,5 @@
 package gd.eggs.utils.native;
+import flash.display.Graphics;
 import flash.display.Loader;
 import flash.display.Shape;
 import gd.eggs.display.DisplayObject;
@@ -19,6 +20,15 @@ import gd.eggs.utils.Validate;
 			return null;//TODO: throw error
 		}
 		
+		if(Validate.isNotNull(Reflect.getProperty(d, "__graphicsCache"))) {
+			cast(Reflect.getProperty(d, "__graphicsCache"), Graphics).clear();
+			Reflect.setProperty(d, "__graphicsCache", null);
+		}
+		
+		if(Validate.isNotNull(Reflect.getProperty(d, "__filters"))) {
+			Reflect.setProperty(d, "__filters", null);
+		}
+		
 		if(Std.is(d, DisplayObjectContainer)) {
 			if(Std.is(d, Loader)) {
 				var l:Loader = cast(d, Loader);
@@ -27,15 +37,8 @@ import gd.eggs.utils.Validate;
 				}
 				l.unload();
 			} else {
-				if(Std.is(d, Sprite)) {
-					var s:Sprite = cast(d, Sprite);
-					if(Validate.isNotNull(s.graphics)) {
-						s.graphics.clear();
-					}
-					
-					if(Std.is(s, MovieClip)) {
-						cast(s, MovieClip).stop();
-					}
+				if(Std.is(d, MovieClip)) {
+					cast(d, MovieClip).stop();
 				}
 				
 				var container:DisplayObjectContainer = cast(d, DisplayObjectContainer);
@@ -49,11 +52,6 @@ import gd.eggs.utils.Validate;
 				bitmap.bitmapData.dispose();
 			}
 			bitmap.bitmapData = null;
-		} else if(Std.is(d, Shape)) {
-			var s:Shape = cast(d, Shape);
-			if(Validate.isNotNull(s.graphics)) {
-				s.graphics.clear();
-			}
 		} else if(Std.is(d, TextField)) {
 			cast(d, TextField).text = "";
 		}

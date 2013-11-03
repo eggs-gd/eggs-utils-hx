@@ -7,7 +7,6 @@
 -lib openfl
 -lib msignal
 
--cp ../../eggs-framework-hx/eggs-mvc-hx/src/
 -cp src
 -cp test
 
@@ -28,7 +27,6 @@
 -lib openfl-native
 --remap flash:flash
 
--cp ../../eggs-framework-hx/eggs-mvc-hx/src/
 -cp src
 -cp test
 -neko target/build/neko_test.n

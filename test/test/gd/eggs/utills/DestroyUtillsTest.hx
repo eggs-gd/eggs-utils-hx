@@ -7,7 +7,7 @@ import gd.eggs.display.DisplayObject.Sprite;
 import gd.eggs.display.DisplayObject.TextField;
 import gd.eggs.utils.DestroyUtils;
 import massive.munit.Assert;
-import msignal.Signal.Signal0;
+
 
 /**
  * @author Dukobpa3
@@ -15,21 +15,6 @@ import msignal.Signal.Signal0;
 class DestroyUtillsTest {
 	
 	public function new() {
-	}
-	
-	@Test
-	public function testExample()  {
-		var signal = new Signal0();
-		var counter = 0;
-		signal.add(function() counter++);
-		signal.dispatch();
-		
-		Assert.areEqual(counter, 1);
-		DestroyUtils.destroy(signal);
-		Assert.areEqual(signal.numListeners, 0);
-		
-		signal.dispatch();
-		Assert.areEqual(counter, 1);
 	}
 	
 	#if (flash && !starling)

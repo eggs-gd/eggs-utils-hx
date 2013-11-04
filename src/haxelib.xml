@@ -2,6 +2,9 @@
 	<user name="eggs"/>
 	<description><![CDATA[A utils package for haxe and openfl]]></description>
 	<version name="0.0.1-alpha"><![CDATA[Initial version. Basic mechanism]]></version>
+	
+	<depends name="openfl"/>
+	
 	<tag v="openfl"/>
 	<tag v="utils"/>
 	<tag v="eggs"/>

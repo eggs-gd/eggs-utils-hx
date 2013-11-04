@@ -17,7 +17,7 @@ class DestroyUtils{
 	 */
 	public static function destroy(d:Dynamic, safe:Bool = true):Dynamic {
 		if(Std.is(d, IInitialize)) {
-			return cast(d, IInitialize).destroy();
+			cast(d, IInitialize).destroy();
 		}
 		
 		#if msignal

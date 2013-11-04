@@ -29,7 +29,7 @@ class DestroyUtils{
 		if(Reflect.hasField(d, "iterator")) {
 			var itr:Iterator<Dynamic> = Reflect.callMethod(d, Reflect.field(d, "iterator"), []);
 			if(itr.hasNext()) {
-				while (itr.hasNext())) {
+				while (itr.hasNext()) {
 					destroy(itr.next());
 				}
 			}

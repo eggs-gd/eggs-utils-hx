@@ -2,9 +2,9 @@
   "name": "eggs-utils",
   "license": "MIT",
   "tags": ["openfl","utils","eggs"],
-  "description": "<![CDATA[A utils package for haxe and openfl]]>",
+  "description": "A utils package for haxe and openfl>",
   "contributors": ["eggs"],
-  "releasenote": "<![CDATA[Initial version. Basic mechanism]]>",
+  "releasenote": "Initial version. Basic mechanism",
   "version": "0.0.1-alpha",
   "url": "https://github.com/eggs-gd/eggs-utils-hx",
   "dependencies": {

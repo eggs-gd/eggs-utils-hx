@@ -2,7 +2,6 @@
 -main TestMain
 
 -lib munit
--lib mcover
 -lib hamcrest
 -lib openfl
 
@@ -10,7 +9,7 @@
 -cp test
 
 -swf-version 11.8
--swf target/build/as3_test.swf
+-swf target/test/build/as3_test.swf
 
 -debug
 -D fdb
@@ -27,6 +26,6 @@
 
 -cp src
 -cp test
--neko target/build/neko_test.n
+-neko target/test/build/neko_test.n
 
 --next

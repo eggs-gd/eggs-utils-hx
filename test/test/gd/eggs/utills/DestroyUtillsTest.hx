@@ -7,7 +7,10 @@ import gd.eggs.display.DisplayObject.Sprite;
 import gd.eggs.display.DisplayObject.TextField;
 import gd.eggs.utils.DestroyUtils;
 import massive.munit.Assert;
+
+#if msignal
 import msignal.Signal.Signal0;
+#end
 
 /**
  * @author Dukobpa3
@@ -17,6 +20,7 @@ class DestroyUtillsTest {
 	public function new() {
 	}
 	
+	#if msignal
 	@Test
 	public function testExample()  {
 		var signal = new Signal0();
@@ -31,6 +35,7 @@ class DestroyUtillsTest {
 		signal.dispatch();
 		Assert.areEqual(counter, 1);
 	}
+	#end
 	
 	#if (flash && !starling)
 	@Test

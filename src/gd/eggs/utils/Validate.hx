@@ -3,7 +3,7 @@ package gd.eggs.utils;
 /**
  * @author SlavaRa
  */
-class Validate {
+extern class Validate {
 	public static inline function isNull(d:Null<Dynamic>):Bool {
 		return d == null;
 	}

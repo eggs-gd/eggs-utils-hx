@@ -2,6 +2,7 @@ import massive.munit.TestSuite;
 
 import ExampleTest;
 import test.gd.eggs.utills.DestroyUtillsTest;
+import test.gd.eggs.utills.StringUtilsTest;
 
 /**
  * Auto generated Test Suite for MassiveUnit.
@@ -17,5 +18,6 @@ class TestSuite extends massive.munit.TestSuite
 
 		add(ExampleTest);
 		add(test.gd.eggs.utills.DestroyUtillsTest);
+		add(test.gd.eggs.utills.StringUtilsTest);
 	}
 }

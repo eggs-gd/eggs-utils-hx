@@ -16,6 +16,10 @@ class DestroyUtils{
 	 * @return null
 	 */
 	public static function destroy(d:Dynamic, safe:Bool = true):Dynamic {
+		if(Validate.isNull(d)) {
+			return null;
+		}
+		
 		if(Std.is(d, IInitialize)) {
 			cast(d, IInitialize).destroy();
 		}
@@ -25,7 +29,6 @@ class DestroyUtils{
 			cast(d, Signal<Dynamic, Dynamic>).removeAll();
 		} else 
 		#end
-		
 		if(Reflect.hasField(d, "iterator")) {
 			var itr:Iterator<Dynamic> = Reflect.callMethod(d, Reflect.field(d, "iterator"), []);
 			while (itr.hasNext()) {

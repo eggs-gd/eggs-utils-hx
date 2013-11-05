@@ -23,19 +23,15 @@ class DestroyUtils{
 		#if msignal
 		if(Std.is(d, Signal)) {
 			cast(d, Signal<Dynamic, Dynamic>).removeAll();
-		}
+		} else 
 		#end
 		
 		if(Reflect.hasField(d, "iterator")) {
 			var itr:Iterator<Dynamic> = Reflect.callMethod(d, Reflect.field(d, "iterator"), []);
-			if(itr.hasNext()) {
-				while (itr.hasNext()) {
-					destroy(itr.next());
-				}
+			while (itr.hasNext()) {
+				destroy(itr.next());
 			}
-		}
-		
-		if(Std.is(d, flash.utils.ByteArray)) {
+		} else if(Std.is(d, flash.utils.ByteArray)) {
 			cast(d, flash.utils.ByteArray).clear();
 		} else if(!safe && Std.is(d, flash.display.BitmapData)) {
 			cast(d, flash.display.BitmapData).dispose();
